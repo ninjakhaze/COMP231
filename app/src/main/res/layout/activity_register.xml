@@ -59,6 +59,30 @@
             android:background="@drawable/blue_border"
             tools:targetApi="q">
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/skyB"
+                android:hint="Email Address"
+                android:inputType="textPersonName"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColorHint="@color/skyB"
+                android:textStyle="bold"
+                app:met_baseColor="@color/white"
+                app:met_floatingLabel="normal"
+                app:met_textColor="@color/white" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/blue_border"
+            tools:targetApi="q">
+            <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
