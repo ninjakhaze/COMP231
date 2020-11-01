@@ -4,31 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".MainActivity">
-
+    tools:context=".RegisterActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/bar_layout"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_centerVertical="true">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/fitness_buddy_app_logo" />
+        android:layout_below="@+id/toolbar">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Login"
-            android:textSize="50sp"
-            android:textStyle="bold"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/skyB"/>
-
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Create New Account"
+            android:textColor="@color/skyB"
+            android:textSize="30sp"
+            android:textStyle="bold" />
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -38,13 +35,13 @@
             android:background="@drawable/blue_border"
             tools:targetApi="q">
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/email"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/skyB"
-                android:hint="Email Address"
-                android:inputType="textEmailAddress"
+                android:hint="User Name"
+                android:inputType="textPersonName"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textColorHint="@color/skyB"
@@ -53,7 +50,6 @@
                 app:met_floatingLabel="normal"
                 app:met_textColor="@color/white" />
         </FrameLayout>
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -63,13 +59,13 @@
             android:background="@drawable/blue_border"
             tools:targetApi="q">
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/paswword"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@color/skyB"
                 android:hint="Password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:textColorHint="@color/skyB"
@@ -78,13 +74,63 @@
                 app:met_floatingLabel="normal"
                 app:met_textColor="@color/white" />
         </FrameLayout>
-
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/blue_border"
+            tools:targetApi="q">
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/skyB"
+                android:hint="Mobile"
+                android:inputType="textPhonetic"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColorHint="@color/skyB"
+                android:textStyle="bold"
+                app:met_baseColor="@color/white"
+                app:met_floatingLabel="normal"
+                app:met_textColor="@color/white" />
+        </FrameLayout>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:background="@drawable/blue_border"
+            android:id="@+id/radioBtn">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:text="MALE"
+                android:id="@+id/male"
+                tools:targetApi="lollipop"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:text="FEMALE"
+                android:id="@+id/female"
+                tools:targetApi="lollipop"/>
+        </RadioGroup>
         <ProgressBar
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/progressBar"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/white"
+            android:indeterminateTint="@color/skyB"
             tools:targetApi="lollipop"
             android:visibility="gone"/>
 
@@ -96,50 +142,18 @@
             android:layout_marginRight="50dp"
             android:elevation="10dp"
             android:outlineAmbientShadowColor="@android:color/darker_gray"
-            android:background="@drawable/blue_border"
+            android:background="@drawable/white_boarder"
             tools:targetApi="q">
             <Button
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:text="LOGIN"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:elevation="10dp"
-            android:outlineAmbientShadowColor="@android:color/darker_gray"
-            android:background="@drawable/blue_border"
-            tools:targetApi="q">
-            <Button
-                android:id="@+id/REGISTER"
+                android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:text="Register"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/skyB"
                 android:textSize="20sp" />
         </FrameLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/forget"
-            android:text="Forget password?"
-            android:layout_margin="20sp"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/skyB"
-            android:linksClickable="true"/>
     </LinearLayout>
+
 </RelativeLayout>
