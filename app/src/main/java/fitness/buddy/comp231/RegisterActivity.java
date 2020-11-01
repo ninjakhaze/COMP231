@@ -51,7 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
         //create instance
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         userName = findViewById(R.id.username);
         emailAddress = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -67,7 +66,6 @@ public class RegisterActivity extends AppCompatActivity {
                 final String email = emailAddress.getText().toString();
                 final String txt_password = password.getText().toString();
                 final String txt_mobile = mobiles.getText().toString();
-
                 int checkedId = radioGroup.getCheckedRadioButtonId();
                 RadioButton selected_gender = radioGroup.findViewById(checkedId);
                 if (selected_gender == null){
@@ -103,7 +101,6 @@ public class RegisterActivity extends AppCompatActivity {
                     hashMap.put("mobile",txt_mobile);
                     hashMap.put("imageURL","default");
                     databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){

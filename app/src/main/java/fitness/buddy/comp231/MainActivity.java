@@ -29,16 +29,16 @@ public class MainActivity extends AppCompatActivity {
         Button registerBtn = findViewById(R.id.register);
         Button loginBtn = findViewById(R.id.login);
         email = findViewById(R.id.email);
-        password = findViewById(R.id.paswword);
+        password = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
         //initialize firebase
         firebaseAuth = FirebaseAuth.getInstance();
-        /*registerBtn.setOnClickListener(new View.OnClickListener() {
+        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,RegisterActivity.class));
             }
-        });*/
+        });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
