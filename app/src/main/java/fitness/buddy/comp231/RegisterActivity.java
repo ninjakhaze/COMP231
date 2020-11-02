@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                     hashMap.put("email",email);
                     hashMap.put("gender",gender);
                     hashMap.put("mobile",txt_mobile);
-                    hashMap.put("imageURL","default");
+                    hashMap.put("imageUrl","default");
                     databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

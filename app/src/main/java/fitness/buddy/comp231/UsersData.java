@@ -6,7 +6,7 @@ public class UsersData {
     private String email;
     private String gender;
     private String mobile;
-    private String imageURL;
+    private String imageUrl;
 
     public UsersData(String userId, String username, String email, String gender, String mobile, String imageURL) {
         this.userId = userId;
@@ -14,7 +14,7 @@ public class UsersData {
         this.email = email;
         this.gender = gender;
         this.mobile = mobile;
-        this.imageURL = imageURL;
+        this.imageUrl = imageURL;
     }
 
     public UsersData() {
@@ -28,9 +28,7 @@ public class UsersData {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username;}
 
     public void setUsername(String username) {
         this.username = username;
@@ -61,10 +59,10 @@ public class UsersData {
     }
 
     public String getImageURL() {
-        return imageURL;
+        return imageUrl;
     }
 
     public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+        this.imageUrl = imageURL;
     }
 }
