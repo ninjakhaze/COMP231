@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -189,6 +191,24 @@ public class StartActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.changePsw) {
+            startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
+        } else if (id == R.id.logout) {
+            firebaseAuth.signOut();
+            startActivity(new Intent(StartActivity.this,MainActivity.class));
+            finish();
+        }
+        return true;
     }
 
     private void collectOldImages() {
