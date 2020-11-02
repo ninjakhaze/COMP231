@@ -1,6 +1,7 @@
 package fitness.buddy.comp231;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
@@ -49,7 +50,7 @@ public class StartActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ImagesRecyclerAdapter imagesRecyclerAdapter;
     private List<ImagesList> imagesList;
-    private static final int IMAGE_REQUEST= 1;
+    private static final int IMAGE_REQUEST = 1;
     private StorageTask storageTask;
     private Uri imageUri;
     private StorageReference storageReference;
@@ -72,10 +73,10 @@ public class StartActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UsersData usersData = dataSnapshot.getValue(UsersData.class);
+                usersData = dataSnapshot.getValue(UsersData.class);
                 assert usersData != null;
                 userName.setText(usersData.getUsername());
-                if (usersData.getImageURL().equals("default")){
+                if (usersData.getImageURL().equals("default")) {
                     circleImageView.setImageResource(R.drawable.ic_launcher_background);
                 } else {
                     Glide.with(getApplicationContext()).load(usersData.getImageURL()).into(circleImageView);
@@ -87,21 +88,20 @@ public class StartActivity extends AppCompatActivity {
                 Toast.makeText(StartActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        circleImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+        circleImageView.setOnClickListener((v)-> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(StartActivity.this);
                 builder.setCancelable(true);
                 View mView = LayoutInflater.from(StartActivity.this).inflate(R.layout.select_image_layout,null);
                 RecyclerView recyclerView = (RecyclerView) mView.findViewById(R.id.recyclerView);
-                collectedOldImages();
+                collectOldImages();
                 recyclerView.setLayoutManager(new GridLayoutManager(StartActivity.this,3));
                 recyclerView.setHasFixedSize(true);
+
                 imagesRecyclerAdapter = new ImagesRecyclerAdapter(imagesList, StartActivity.this);
                 recyclerView.setAdapter(imagesRecyclerAdapter);
                 imagesRecyclerAdapter.notifyDataSetChanged();
-
-                Button openImage = (Button) mView.findViewById(R.id.openImages);
+                Button openImage = mView.findViewById(R.id.openImages);
                 openImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -111,7 +111,7 @@ public class StartActivity extends AppCompatActivity {
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-            }
+
         });
     }
 
@@ -123,7 +123,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult (int requestCode, int resultCode, @NonNull Intent data) {
+    protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
         if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
@@ -151,36 +151,37 @@ public class StartActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG,25,byteArrayOutputStream);
             byte[] imageFileToByte = byteArrayOutputStream.toByteArray();
             final StorageReference imageReference = storageReference.child(usersData.getUsername()+System.currentTimeMillis()+".jpg");
+            storageTask = imageReference.putBytes(imageFileToByte);
             storageTask.continueWithTask((Continuation<UploadTask.TaskSnapshot, Task<Uri>>) task->{
                 if (!task.isSuccessful()){
                     throw task.getException();
                 }
                 return imageReference.getDownloadUrl();
             })
-            .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downloadUri = task.getResult();
-                        String sDownloadUri = downloadUri.toString();
-                        Map<String,Object> hashMap = new HashMap<>();
-                        hashMap.put("imageUrl",sDownloadUri);
-                        databaseReference.updateChildren(hashMap);
-                        final DatabaseReference profileImagesReference = FirebaseDatabase.getInstance().getReference("profile_images").child(firebaseUser.getUid());
-                        profileImagesReference.push().setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    progressDialog.dismiss();
-                                } else {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(StartActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
+                    .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                Uri downloadUri = task.getResult();
+                                String sDownloadUri = downloadUri.toString();
+                                Map<String,Object> hashMap = new HashMap<>();
+                                hashMap.put("imageUrl",sDownloadUri);
+                                databaseReference.updateChildren(hashMap);
+                                final DatabaseReference profileImagesReference = FirebaseDatabase.getInstance().getReference("profile_images").child(firebaseUser.getUid());
+                                profileImagesReference.push().setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            progressDialog.dismiss();
+                                        } else {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(StartActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             }
-                        });
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(StartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -190,7 +191,7 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
-    private void collectedOldImages() {
+    private void collectOldImages() {
         DatabaseReference imageListReference = FirebaseDatabase.getInstance().getReference("profile_images").child(firebaseUser.getUid());
         imageListReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -204,7 +205,7 @@ public class StartActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(StartActivity.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }
