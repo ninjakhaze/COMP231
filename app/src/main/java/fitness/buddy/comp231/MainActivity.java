@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
+        forgetPassword = findViewById(R.id.forget);
         //initialize firebase
         firebaseAuth = FirebaseAuth.getInstance();
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     login(tex_email, tex_password);
                 }
+            }
+        });
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ForgetPasswordActivity.class));
             }
         });
     }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/changePsw"
+        android:orderInCategory="100"
+        android:title="Change Password"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/profile"
+        android:orderInCategory="100"
+        android:title="Profile"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/listOfTrainer"
+        android:orderInCategory="100"
+        android:title="List of Trainers/Clients"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/forum"
+        android:orderInCategory="100"
+        android:title="Forum"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/messaging"
+        android:orderInCategory="100"
+        android:title="Messaging"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never"/>
+</menu>
