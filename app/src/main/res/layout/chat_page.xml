@@ -9,42 +9,40 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/bar_layout"/>
+        layout="@layout/bar_layout" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="411dp"
-        android:layout_height="607dp"
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="515dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="59dp"
-        android:gravity="clip_horizontal"
-        android:hint="Chat Message will appear here"
-        android:textAlignment="gravity" />
+        android:layout_marginTop="55dp" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="317dp"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="51dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="106dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Type Here..."
-        android:inputType="textPersonName"
-        android:text="" />
+        android:gravity="start|top"
+        android:hint="@string/type_your_message_here"
+        android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/SendButton"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="11dp"
-        android:onClick="sendMessage"
-        android:text="Send" />
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="104dp"
+        android:onClick="sendButton"
+        android:text="@string/send" />
 
 
 </RelativeLayout>

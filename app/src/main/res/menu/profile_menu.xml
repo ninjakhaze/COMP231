@@ -23,9 +23,9 @@
         android:title="Forum"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/messaging"
+        android:id="@+id/createMessage"
         android:orderInCategory="100"
-        android:title="Messaging"
+        android:title="Create Message"
         app:showAsAction="never"/>
     <item
         android:id="@+id/logout"
