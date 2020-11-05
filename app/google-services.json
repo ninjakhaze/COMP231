@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "311452960218",
+    "firebase_url": "https://comp231-5db7a.firebaseio.com",
+    "project_id": "comp231-5db7a",
+    "storage_bucket": "comp231-5db7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311452960218:android:3a85767d14e748b0f62ce3",
+        "android_client_info": {
+          "package_name": "fitness.buddy.comp231"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311452960218-nia05vt239h9ks6nv2777igf2fa8ceo6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBjEV1JFyKmjsgcD4qy3A-_4-FZKvseaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311452960218-nia05vt239h9ks6nv2777igf2fa8ceo6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
