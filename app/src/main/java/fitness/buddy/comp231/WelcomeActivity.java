@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static int SPLASH_SCREEN = 3000;
+    private static int SPLASH_SCREEN = 6000;
     //variables
     Animation topAnim, botAnim;
     ImageView image;
@@ -29,11 +29,11 @@ public class WelcomeActivity extends AppCompatActivity {
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         botAnim = AnimationUtils.loadAnimation(this,R.anim.bot_animation);
 
-        image = findViewById(R.id.imageView);
+        image = findViewById(R.id.imgs);
         logo = findViewById(R.id.textView);
         slogan = findViewById(R.id.textView2);
 
-        //image.setAnimation(topAnim);
+        image.setAnimation(topAnim);
         logo.setAnimation(botAnim);
         slogan.setAnimation(botAnim);
 
