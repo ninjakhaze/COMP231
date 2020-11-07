@@ -2,6 +2,7 @@ package fitness.buddy.comp231;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,9 +39,11 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -60,6 +64,11 @@ public class ChatPage extends AppCompatActivity {
     DatabaseReference reference;
     Intent intent;
 
+    MessageAdapter messageAdapter;
+    List<ChatDisplay> mchat;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +79,14 @@ public class ChatPage extends AppCompatActivity {
         username = findViewById(R.id.userName);
         sendBtn = findViewById(R.id.btn_send);
         msg_editText = findViewById(R.id.text_send);
+
+        //RecycleView
+        recyclerView = findViewById(R.id.recyler_view);
+        recyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         intent = getIntent();
         String userid = intent.getStringExtra("userid");
@@ -90,6 +107,8 @@ public class ChatPage extends AppCompatActivity {
                             .load(user.getImageURL())
                             .into(imageView);
                 }
+
+                readMessages(fuser.getUid(),userid,user.getImageURL());
             }
 
             @Override
@@ -122,5 +141,35 @@ public class ChatPage extends AppCompatActivity {
         hashMap.put("message",message);
 
         reference.child("Chats").push().setValue(hashMap);
+    }
+
+    private void readMessages(String myid, String userid, String imageurl){
+
+        mchat = new ArrayList<>();
+
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mchat.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    ChatDisplay chat = snapshot.getValue(ChatDisplay.class);
+                    if(chat.getReceiver().equals(myid) && chat.getSender().equals(userid) ||
+                            chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
+                        mchat.add(chat);
+                    }
+
+                    messageAdapter = new MessageAdapter(ChatPage.this,mchat,imageurl);
+                    recyclerView.setAdapter(messageAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 }
