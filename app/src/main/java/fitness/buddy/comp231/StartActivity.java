@@ -137,6 +137,7 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
+
     private void uploadImage() {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Uploading Image");
@@ -205,7 +206,7 @@ public class StartActivity extends AppCompatActivity {
             startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
         }
         else if (id == R.id.createMessage) {
-            startActivity(new Intent(StartActivity.this,ChatPage.class));
+            startActivity(new Intent(StartActivity.this,UsersFragment.class));
         }
         else if (id == R.id.logout) {
             firebaseAuth.signOut();

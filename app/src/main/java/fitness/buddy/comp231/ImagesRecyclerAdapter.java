@@ -1,6 +1,7 @@
 package fitness.buddy.comp231;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,15 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter<ImagesRecyclerAd
                 HashMap<String,Object> hashMap = new HashMap<>();
                 hashMap.put("imageUrl",imagesList.get(position).getImageUrl());
                 userReference.updateChildren(hashMap);
+            }
+        });
+        
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ChatPage.class );
+                context.startActivity(intent);
             }
         });
     }
