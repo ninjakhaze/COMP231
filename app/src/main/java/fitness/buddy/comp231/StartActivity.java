@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
@@ -206,7 +207,9 @@ public class StartActivity extends AppCompatActivity {
             startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
         }
         else if (id == R.id.createMessage) {
-            startActivity(new Intent(StartActivity.this,UsersFragment.class));
+            startActivity(new Intent(StartActivity.this,UserAdapter.class));
+          //  FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            //fragmentTransaction.replace(R.id.profile_menu, new UserAdapter()).commit();
         }
         else if (id == R.id.logout) {
             firebaseAuth.signOut();
