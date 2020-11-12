@@ -113,7 +113,6 @@ public class StartActivity extends AppCompatActivity {
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
         });
     }
 
@@ -204,6 +203,9 @@ public class StartActivity extends AppCompatActivity {
         if (id == R.id.changePsw) {
             startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
         }
+        else if (id == R.id.profile) {
+            startActivity(new Intent(StartActivity.this,ProfileActivity.class));
+        }
         else if (id == R.id.createMessage) {
             startActivity(new Intent(StartActivity.this,ChatPage.class));
         }
@@ -233,6 +235,4 @@ public class StartActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

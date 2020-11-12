@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -16,7 +19,19 @@ import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.rengwuxian.materialedittext.MaterialEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -25,6 +40,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressBar progressBar;
     private FirebaseUser firebaseUser;
+    private DatabaseReference databaseReference;
+    private TextView userName;
+    private CircleImageView circleImageView;
+    private List<ImagesList> imagesList;
+    private StorageReference storageReference;
+    private UsersData usersData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +58,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChangePasswordActivity.this,MainActivity.class));
+                startActivity(new Intent(ChangePasswordActivity.this,StartActivity.class));
             }
         });
         firebaseAuth = FirebaseAuth.getInstance();
@@ -61,6 +83,31 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 } else {
                     changePassword(txtOldPsw,txtNewPsw);
                 }
+            }
+        });
+        imagesList = new ArrayList<>();
+        userName = findViewById(R.id.username);
+        circleImageView = findViewById(R.id.profileImage);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        storageReference = FirebaseStorage.getInstance().getReference("profile_images");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                usersData = dataSnapshot.getValue(UsersData.class);
+                assert usersData != null;
+                userName.setText(usersData.getUsername());
+                if (usersData.getImageURL().equals("default")) {
+                    circleImageView.setImageResource(R.drawable.ic_launcher_background);
+                } else {
+                    Glide.with(getApplicationContext()).load(usersData.getImageURL()).into(circleImageView);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ChangePasswordActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
