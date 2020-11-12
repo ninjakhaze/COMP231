@@ -64,7 +64,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("Home Screen");
         imagesList = new ArrayList<>();
         userName = findViewById(R.id.username);
         circleImageView = findViewById(R.id.profileImage);
