@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,9 +45,11 @@ public class ChatPage extends AppCompatActivity {
 
 
     private DatabaseReference databaseReference;
+    private FirebaseAuth firebaseAuth;
 
     private EditText editText;
     private ListView listView;
+    private Button button;
 
     private String stringMessage;
     private byte encrytionKey[] = {9, 115, 51, 86 , 105, 4, -31, -23, -68, 88, 17, 20, 3, -105, 119, -53};
@@ -61,6 +64,26 @@ public class ChatPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Create Message");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+       /* Button send = (Button)findViewById(R.id.button);
+        send.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                EditText input = (EditText) findViewById(R.id.editText);
+
+                //Firebase
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString(),
+                                FirebaseAuth.getInstance()
+                                .getCurrentUser()
+                                 .getDisplayName())
+                        );
+
+                input.setText("");
+            }
+        });*/
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +91,9 @@ public class ChatPage extends AppCompatActivity {
             }
         });
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Message");
+        FirebaseUser rUser = firebaseAuth.getCurrentUser();
+        String userId = rUser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Message").child(userId);
 
         editText = findViewById(R.id.editText);
         listView = findViewById(R.id.listView);

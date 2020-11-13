@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COMP231">
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".PremiumActivty"/>
+        <activity android:name=".PremiumActivty" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".StartActivity" />
@@ -20,12 +20,14 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatPage"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ChatPage"
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="preloaded_fonts"
