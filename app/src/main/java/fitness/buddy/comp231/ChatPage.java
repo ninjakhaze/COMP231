@@ -80,6 +80,18 @@ public class ChatPage extends AppCompatActivity {
         sendBtn = findViewById(R.id.btn_send);
         msg_editText = findViewById(R.id.text_send);
 
+        //Toolbar:
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();;
+            }
+        });
+
         //RecycleView
         recyclerView = findViewById(R.id.recyler_view);
         recyclerView.setHasFixedSize(true);
@@ -89,10 +101,10 @@ public class ChatPage extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         intent = getIntent();
-        String userid = intent.getStringExtra("userid");
+        String userId = intent.getStringExtra("userId");
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,7 +120,7 @@ public class ChatPage extends AppCompatActivity {
                             .into(imageView);
                 }
 
-                readMessages(fuser.getUid(),userid,user.getImageURL());
+                readMessages(fuser.getUid(),userId,user.getImageURL());
             }
 
             @Override
@@ -122,7 +134,7 @@ public class ChatPage extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = msg_editText.getText().toString();
                 if(!msg.equals("")){
-                    sendMessage(fuser.getUid(), userid, msg);
+                    sendMessage(fuser.getUid(), userId, msg);
                 }else{
                     Toast.makeText(ChatPage.this, "Please don't send an empty msg",Toast.LENGTH_SHORT);
                 }
@@ -130,6 +142,11 @@ public class ChatPage extends AppCompatActivity {
                 msg_editText.setText("");
             }
         });
+
+
+    }
+
+    private void setSupportActionBar(Toolbar toolbar) {
     }
 
     private void sendMessage(String sender, String receiver, String message) {
