@@ -207,7 +207,7 @@ public class StartActivity extends AppCompatActivity {
             startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
         }
         else if (id == R.id.createMessage) {
-            startActivity(new Intent(StartActivity.this,UserAdapter.class));
+            startActivity(new Intent(StartActivity.this,ChatMain.class));
           //  FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             //fragmentTransaction.replace(R.id.profile_menu, new UserAdapter()).commit();
         }
