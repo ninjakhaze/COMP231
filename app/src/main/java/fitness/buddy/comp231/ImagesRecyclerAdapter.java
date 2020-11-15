@@ -48,15 +48,6 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter<ImagesRecyclerAd
                 userReference.updateChildren(hashMap);
             }
         });
-        
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ChatPage.class );
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override

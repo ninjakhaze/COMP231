@@ -208,13 +208,14 @@ public class StartActivity extends AppCompatActivity {
         }
         else if (id == R.id.createMessage) {
             startActivity(new Intent(StartActivity.this,ChatMain.class));
-          //  FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            //fragmentTransaction.replace(R.id.profile_menu, new UserAdapter()).commit();
         }
         else if (id == R.id.logout) {
             firebaseAuth.signOut();
             startActivity(new Intent(StartActivity.this,MainActivity.class));
             finish();
+        }
+        else if (id == R.id.listOfTrainer) {
+            startActivity(new Intent(StartActivity.this,TrainerList.class));
         }
         return true;
     }

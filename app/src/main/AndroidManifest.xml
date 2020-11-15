@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.COMP231">
-        <activity android:name=".ChatMain"/>
+        <activity android:name=".TrainerList"/>
+        <activity android:name=".ChatMain" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".StartActivity" />
