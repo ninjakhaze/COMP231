@@ -3,4 +3,6 @@
     <string name="type_your_message_here">Type your message here !</string>
     <string name="send">Send</string>
     <string name="slogan">NO BULLSHIT, NO EXCUSES.\n JUST LIFT THAT SHIT.!!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

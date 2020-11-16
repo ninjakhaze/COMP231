@@ -213,8 +213,9 @@ public class StartActivity extends AppCompatActivity {
             firebaseAuth.signOut();
             startActivity(new Intent(StartActivity.this,MainActivity.class));
             finish();
+            return true;
         }
-        return true;
+        return false;
     }
 
     private void collectOldImages() {
