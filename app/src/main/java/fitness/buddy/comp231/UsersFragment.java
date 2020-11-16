@@ -61,7 +61,7 @@ public class UsersFragment extends Fragment {
                     UsersData user = snapshot.getValue(UsersData.class);
 
                     assert user != null;
-                    if (!user.getUserId().equals(firebaseUser.getUid())){
+                    if (user.getUserId().equals(firebaseUser.getUid())){
                         mUsers.add(user);
                     }
                     userAdapter = new UserAdapter(getContext(), mUsers);
