@@ -2,6 +2,8 @@ package fitness.buddy.comp231;
 
 import android.os.Bundle;
 
+import fitness.buddy.comp231.UsersData;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,10 +51,10 @@ public class UsersFragment extends Fragment {
 
     private void ReadUsers(){
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ref = reference.child(("Users").toString());
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+       // DatabaseReference ref = reference.child(("Users").toString());
 
-        ref.addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
@@ -61,9 +63,12 @@ public class UsersFragment extends Fragment {
                     UsersData user = snapshot.getValue(UsersData.class);
 
                     assert user != null;
-                    if (user.getUserId().equals(firebaseUser.getUid())){
+                    assert firebaseUser != null;
+                    if (user.getUserId().equals(firebaseUser.getUid()))
+                    {
                         mUsers.add(user);
                     }
+
                     userAdapter = new UserAdapter(getContext(), mUsers);
                     recyclerView.setAdapter(userAdapter);
 
