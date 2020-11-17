@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
@@ -64,7 +65,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home Screen");
+        getSupportActionBar().setTitle("");
         imagesList = new ArrayList<>();
         userName = findViewById(R.id.username);
         circleImageView = findViewById(R.id.profileImage);
@@ -113,6 +114,7 @@ public class StartActivity extends AppCompatActivity {
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+
         });
     }
 
@@ -135,6 +137,7 @@ public class StartActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void uploadImage() {
         ProgressDialog progressDialog = new ProgressDialog(this);
@@ -203,19 +206,18 @@ public class StartActivity extends AppCompatActivity {
         if (id == R.id.changePsw) {
             startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
         }
-        else if (id == R.id.profile) {
-            startActivity(new Intent(StartActivity.this,ProfileActivity.class));
-        }
-        else if (id == R.id.chatRoom) {
-            startActivity(new Intent(StartActivity.this,ChatRoom.class));
+        else if (id == R.id.createMessage) {
+            startActivity(new Intent(StartActivity.this,ChatMain.class));
         }
         else if (id == R.id.logout) {
             firebaseAuth.signOut();
             startActivity(new Intent(StartActivity.this,MainActivity.class));
             finish();
-            return true;
         }
-        return false;
+        else if (id == R.id.listOfTrainer) {
+            startActivity(new Intent(StartActivity.this,TrainerList.class));
+        }
+        return true;
     }
 
     private void collectOldImages() {
@@ -236,4 +238,6 @@ public class StartActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

@@ -8,9 +8,6 @@ public class UsersData {
     private String mobile;
     private String imageUrl;
 
-    public UsersData() {
-    }
-
     public UsersData(String userId, String username, String email, String gender, String mobile, String imageURL) {
         this.userId = userId;
         this.username = username;
@@ -20,6 +17,9 @@ public class UsersData {
         this.imageUrl = imageURL;
     }
 
+    public UsersData() {
+    }
+    
 
     public String getUserId() {
         return userId;
