@@ -206,8 +206,8 @@ public class StartActivity extends AppCompatActivity {
         else if (id == R.id.profile) {
             startActivity(new Intent(StartActivity.this,ProfileActivity.class));
         }
-        else if (id == R.id.createMessage) {
-            startActivity(new Intent(StartActivity.this,ChatPage.class));
+        else if (id == R.id.chatRoom) {
+            startActivity(new Intent(StartActivity.this,ChatRoom.class));
         }
         else if (id == R.id.logout) {
             firebaseAuth.signOut();
