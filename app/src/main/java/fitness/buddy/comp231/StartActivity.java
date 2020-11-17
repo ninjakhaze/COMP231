@@ -206,8 +206,11 @@ public class StartActivity extends AppCompatActivity {
         if (id == R.id.changePsw) {
             startActivity(new Intent(StartActivity.this,ChangePasswordActivity.class));
         }
-        else if (id == R.id.createMessage) {
-            startActivity(new Intent(StartActivity.this,ChatMain.class));
+        else  if (id == R.id.profile) {
+            startActivity(new Intent(StartActivity.this,ProfileActivity.class));
+        }
+        else if (id == R.id.chatRoom) {
+            startActivity(new Intent(StartActivity.this,ChatRoom.class));
         }
         else if (id == R.id.logout) {
             firebaseAuth.signOut();
