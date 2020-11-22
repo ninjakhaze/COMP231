@@ -45,15 +45,12 @@ public class UsersFragment extends Fragment {
 
         mUsers = new ArrayList<>();
 
-        userAdapter = new UserAdapter(getContext(), mUsers);
-        recyclerView.setAdapter(userAdapter);
-
         ReadUsers();
         return  view;
     }
 
     private void ReadUsers(){
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
        // DatabaseReference ref = reference.child(("Users").toString());
 
@@ -67,11 +64,13 @@ public class UsersFragment extends Fragment {
 
                     assert user != null;
                     assert firebaseUser != null;
-                    if (user.getUserId().equals(firebaseUser.getUid()))
+                    if (!user.getUserId().equals(firebaseUser.getUid()))
                     {
                         mUsers.add(user);
                     }
-
+                    
+                    userAdapter = new UserAdapter(getContext(), mUsers);
+                    recyclerView.setAdapter(userAdapter);
 
                 }
 
