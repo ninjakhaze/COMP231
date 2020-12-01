@@ -80,7 +80,7 @@ public class StartActivity extends AppCompatActivity {
                 assert usersData != null;
                 userName.setText(usersData.getUsername());
                 if (usersData.getImageURL().equals("default")) {
-                    circleImageView.setImageResource(R.drawable.ic_launcher_background);
+                    circleImageView.setImageResource(R.drawable.ic_baseline_emoji_emotions_24);
                 } else {
                     Glide.with(getApplicationContext()).load(usersData.getImageURL()).into(circleImageView);
                 }
@@ -241,6 +241,4 @@ public class StartActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
