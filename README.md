@@ -93,6 +93,10 @@ It has the Client satisfaction and is cost-effective.**
 ![client](https://user-images.githubusercontent.com/26337048/97508280-91904d80-1955-11eb-8e41-8920bd94242c.PNG)<br>
 **Trainer**
 ![trainer](https://user-images.githubusercontent.com/26337048/97508532-37dc5300-1956-11eb-8d0b-eda56d8a8c64.png)<br>
+<br>
+<br>
+## Sample Images
+<br>
 ![image](https://user-images.githubusercontent.com/26337048/101220371-8ff02e80-3653-11eb-8e88-bd5e65a67fe9.png)
 ![image](https://user-images.githubusercontent.com/26337048/101220376-91b9f200-3653-11eb-86c7-4780ba4a9933.png)
 ![image](https://user-images.githubusercontent.com/26337048/101220384-941c4c00-3653-11eb-8ddc-c0a3e2a72f4a.png)
