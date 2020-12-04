@@ -96,7 +96,6 @@ It has the Client satisfaction and is cost-effective.**
 <br>
 <br>
 ## Sample Images
-<br>
 ![image](https://user-images.githubusercontent.com/26337048/101220371-8ff02e80-3653-11eb-8e88-bd5e65a67fe9.png)
 ![image](https://user-images.githubusercontent.com/26337048/101220376-91b9f200-3653-11eb-86c7-4780ba4a9933.png)
 ![image](https://user-images.githubusercontent.com/26337048/101220384-941c4c00-3653-11eb-8ddc-c0a3e2a72f4a.png)
